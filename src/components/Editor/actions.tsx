@@ -10,7 +10,7 @@ export default function Actions() {
     <div className="mt-3 flex items-center space-x-2">
       <Button onClick={saveImage} disabled={!fromImgRef.current}>
         <HiDownload className="mr-1 h-5 w-5" />
-        {textContent.editor.actions.buttons.download.label}
+        {textContent.app.editor.actions.buttons.download.label}
       </Button>
       <Button
         onClick={uploadToIpfs}
@@ -21,7 +21,7 @@ export default function Actions() {
             <Spinner size="sm" light={true} />
           </div>
         ) : (
-          <p>{textContent.editor.actions.buttons.ipfs.label}</p>
+          <p>{textContent.app.editor.actions.buttons.ipfs.label}</p>
         )}
       </Button>
     </div>

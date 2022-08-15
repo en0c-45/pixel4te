@@ -24,7 +24,7 @@ export default function Controls() {
         <Label htmlFor="blocksize">
           <div className="flex items-center space-x-2">
             <p className="inline">
-              {textContent.editor.controls.blocksize.label}
+              {textContent.app.editor.controls.blocksize.label}
             </p>
             <input
               type="range"
@@ -37,17 +37,17 @@ export default function Controls() {
             <p className="pr-1">{blocksize}</p>
             <Button.Group pill>
               <Button onClick={() => handleUpDownBlocksize("down")} size="sm">
-                {textContent.editor.controls.blocksize.buttons.down}
+                {textContent.app.editor.controls.blocksize.buttons.down}
               </Button>
               <Button onClick={() => handleUpDownBlocksize("up")} size="sm">
-                {textContent.editor.controls.blocksize.buttons.up}
+                {textContent.app.editor.controls.blocksize.buttons.up}
               </Button>
             </Button.Group>
           </div>
         </Label>
         <Label htmlFor="grayscale">
           <p className="mr-2 inline">
-            {textContent.editor.controls.grayscale.label}
+            {textContent.app.editor.controls.grayscale.label}
           </p>
           <Checkbox
             checked={grayscale}
@@ -57,7 +57,7 @@ export default function Controls() {
         </Label>
         <Label htmlFor="on-palette">
           <p className="mr-2 inline">
-            {textContent.editor.controls.onPalette.label}
+            {textContent.app.editor.controls.onPalette.label}
           </p>
           <Checkbox
             checked={onPalette}
@@ -70,7 +70,7 @@ export default function Controls() {
         <div className="flex items-center justify-center space-x-2 ">
           <Label htmlFor="width">
             <p className="mb-1 ml-1">
-              {textContent.editor.controls.sizes.label.width}
+              {textContent.app.editor.controls.sizes.label.width}
             </p>
             <div className="flex items-center">
               <TextInput
@@ -85,13 +85,13 @@ export default function Controls() {
                 sizing="sm"
               />
               <p className="ml-1">
-                {textContent.editor.controls.sizes.sizeUnit}
+                {textContent.app.editor.controls.sizes.sizeUnit}
               </p>
             </div>
           </Label>
           <Label htmlFor="height">
             <p className="mb-1 ml-1">
-              {textContent.editor.controls.sizes.label.height}
+              {textContent.app.editor.controls.sizes.label.height}
             </p>
             <div className="flex items-center">
               <TextInput
@@ -106,13 +106,13 @@ export default function Controls() {
                 sizing="sm"
               />
               <p className="ml-1">
-                {textContent.editor.controls.sizes.sizeUnit}
+                {textContent.app.editor.controls.sizes.sizeUnit}
               </p>
             </div>
           </Label>
         </div>
         <p className="mt-1 text-[0.6rem] text-gray-500">
-          {textContent.editor.controls.sizes.note}
+          {textContent.app.editor.controls.sizes.note}
         </p>
       </div>
       <div className="mt-3 flex flex-col items-center space-y-2 border-t border-slate-300 py-4 dark:border-gray-700">
@@ -121,18 +121,18 @@ export default function Controls() {
             onClick={() => handleChangeCurrentPalette("normal")}
             disabled={!onPalette}
           >
-            {textContent.editor.controls.palette.buttons.change.label}
+            {textContent.app.editor.controls.palette.buttons.change.label}
           </Button>
           <Button
             onClick={() => handleChangeCurrentPalette("random")}
             disabled={!onPalette}
           >
-            {textContent.editor.controls.palette.buttons.random.label}
+            {textContent.app.editor.controls.palette.buttons.random.label}
           </Button>
         </Button.Group>
         <div className="flex flex-col items-center space-y-2">
           <p className="text-sm font-medium text-gray-900 dark:text-gray-300">
-            {textContent.editor.controls.palette.label} {currentPalette + 1}
+            {textContent.app.editor.controls.palette.label} {currentPalette + 1}
           </p>
           <div className="flex items-center">
             {selectedPalette.map((palette, i) => (

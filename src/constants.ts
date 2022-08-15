@@ -51,57 +51,88 @@ export const textContent = {
   brand: "pixel4te",
   homepage: {
     title: "pixel4te | Make your pixel art!",
+    valuePropose: {
+      title: "Make your own NFT pixel art",
+      subtitle:
+        "Convert your image into pixels, apply a color palette and more.",
+      features: {
+        editorCard: {
+          title: "pixel4te Editor",
+          items: [
+            "convert an image into pixels with different blocksize",
+            "choose 1 from 100 available color palettes or apply a grayscale",
+            "resize output image size",
+            "download your image to your device",
+            "upload your image to the IPFS decentralized service",
+            "share your pixel art on your social networks",
+          ],
+        },
+        nftCard: {
+          title: "pixel4te NFT",
+          items: [
+            "stores the NFT metadata in the IPFS decentralized service",
+            "record NFT metadata in pixel4te API and gets its ID",
+            "mint a new NFT in the pixel4te Collection",
+            "list and sell your nft en pixel4te Marketplace",
+            "set your NFT royalties and earn profit on every transfer",
+          ],
+        },
+      },
+    },
+    callToAcction: {
+      button: "Get Started",
+    },
   },
   app: {
     title: "Editor | pixel4te",
-  },
-  editor: {
-    fileInput: {
-      supportedFormats:
-        "image/png,image/jpg,image/jpeg,image/bmp,image/gif,image/webp",
-      note: "supported formats: jpg, jpeg, png, gif, bmp, webp.",
-    },
-    controls: {
-      blocksize: {
-        label: "blocksize",
-        buttons: {
-          down: "-",
-          up: "+",
-        },
+    editor: {
+      fileInput: {
+        supportedFormats:
+          "image/png,image/jpg,image/jpeg,image/bmp,image/gif,image/webp",
+        note: "supported formats: jpg, jpeg, png, gif, bmp, webp.",
       },
-      grayscale: {
-        label: "grayscale",
-      },
-      onPalette: {
-        label: "on palette",
-      },
-      sizes: {
-        label: {
-          width: "width",
-          height: "height",
-        },
-        sizeUnit: "px",
-        note: "Note: width and height will be for resizing the output image.",
-      },
-      palette: {
-        buttons: {
-          change: {
-            label: "change",
-          },
-          random: {
-            label: "random",
+      controls: {
+        blocksize: {
+          label: "blocksize",
+          buttons: {
+            down: "-",
+            up: "+",
           },
         },
-        label: "palette number:",
-      },
-    },
-    actions: {
-      buttons: {
-        download: {
-          label: "Download",
+        grayscale: {
+          label: "grayscale",
         },
-        ipfs: {
-          label: "Upload to IPFS",
+        onPalette: {
+          label: "on palette",
+        },
+        sizes: {
+          label: {
+            width: "width",
+            height: "height",
+          },
+          sizeUnit: "px",
+          note: "Note: width and height will be for resizing the output image.",
+        },
+        palette: {
+          buttons: {
+            change: {
+              label: "change",
+            },
+            random: {
+              label: "random",
+            },
+          },
+          label: "palette number:",
+        },
+      },
+      actions: {
+        buttons: {
+          download: {
+            label: "Download",
+          },
+          ipfs: {
+            label: "Upload to IPFS",
+          },
         },
       },
     },

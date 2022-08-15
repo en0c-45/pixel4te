@@ -9,12 +9,12 @@ export default function Editor() {
   return (
     <div className="m-4 flex flex-col items-center rounded-xl bg-slate-100 px-2 py-6 shadow-md dark:bg-gray-800 sm:mx-10 sm:px-6 lg:mx-20">
       <FileInput
-        accept={textContent.editor.fileInput.supportedFormats}
+        accept={textContent.app.editor.fileInput.supportedFormats}
         id="editor-input-file"
         onChange={handleChangeInputFile}
         helperText={
           <span className="ml-2 text-[0.6rem] font-normal text-gray-500">
-            {textContent.editor.fileInput.note}
+            {textContent.app.editor.fileInput.note}
           </span>
         }
         color="green"
