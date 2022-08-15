@@ -12,7 +12,7 @@ export default function Layout({ children }: Props) {
   return (
     <Flowbite theme={{ theme }}>
       <Header />
-      {children}
+      <div className="flex min-h-screen dark:bg-gray-900">{children}</div>
       <div className="border-t dark:bg-gray-900">
         <FooterComponent />
       </div>
