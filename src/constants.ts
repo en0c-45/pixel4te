@@ -39,16 +39,28 @@ export const flowbiteTheme: CustomFlowbiteTheme = {
       field: {
         input: {
           sizes: {
-            sm: "p-2 text-xs",
+            sm: "px-1 pb-1 py-1.5 m-0 text-xs",
           },
         },
       },
+    },
+  },
+  button: {
+    size: {
+      lg: "text-sm px-4 py-2 sm:text-base sm:px-5 sm:py-2.5",
     },
   },
 };
 
 export const textContent = {
   brand: "pixel4te",
+  navbar: {
+    links: [
+      { label: "Home", href: "/" },
+      { label: "Editor", href: "/editor" },
+      { label: "NFT", href: "/nft" },
+    ],
+  },
   homepage: {
     title: "pixel4te | Make your pixel art!",
     valuePropose: {
@@ -59,7 +71,7 @@ export const textContent = {
         editorCard: {
           title: "pixel4te Editor",
           items: [
-            "convert an image into pixels with different blocksize",
+            "convert an image into pixels with different blocksize and draw pixel to pixel",
             "choose 1 from 100 available color palettes or apply a grayscale",
             "resize output image size",
             "download your image to your device",
@@ -70,6 +82,7 @@ export const textContent = {
         nftCard: {
           title: "pixel4te NFT",
           items: [
+            "connect your account from the browser wallet",
             "stores the NFT metadata in the IPFS decentralized service",
             "record NFT metadata in pixel4te API and gets its ID",
             "mint a new NFT in the pixel4te Collection",
@@ -123,6 +136,9 @@ export const textContent = {
             },
           },
           label: "palette number:",
+        },
+        pixelToPixel: {
+          label: "pixel to pixel",
         },
       },
       actions: {
