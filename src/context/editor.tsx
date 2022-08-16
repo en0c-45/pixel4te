@@ -47,6 +47,7 @@ interface EditorContext {
   setCurrentPointColor: (value: string) => void;
   onPixelToPixel: boolean;
   handleOnPixelToPixel: (e: InputEvent) => void;
+  copyIpfsHash: () => void;
 }
 
 const ContextEditor = createContext<EditorContext | null>(null);
@@ -397,6 +398,11 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
     });
   }
 
+  function copyIpfsHash() {
+    if (!ipfsHash) return;
+    navigator.clipboard.writeText(ipfsHash);
+  }
+
   useEffect(() => {
     if (!fromImgRef.current) return;
     drawPreCanvas();
@@ -437,6 +443,7 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
         setCurrentPointColor,
         onPixelToPixel,
         handleOnPixelToPixel,
+        copyIpfsHash,
       }}
     >
       {children}
