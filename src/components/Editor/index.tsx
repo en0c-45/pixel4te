@@ -5,7 +5,7 @@ import Actions from "./actions";
 import Controls from "./controls";
 
 export default function Editor() {
-  const { handleChangeInputFile, canvasRef, ipfsHash } = useEditor();
+  const { handleChangeInputFile, canvasRef, ipfsHash, drawPoint } = useEditor();
   return (
     <div className="m-4 flex flex-col items-center rounded-xl bg-slate-100 px-2 py-6 shadow-md dark:bg-gray-800 sm:mx-10 sm:px-6 lg:mx-20">
       <FileInput
@@ -21,7 +21,7 @@ export default function Editor() {
       />
       <Controls />
       <div className="flex w-full items-center justify-center bg-slate-200 dark:bg-gray-700">
-        <canvas ref={canvasRef} id="pixel4te-canvas" />
+        <canvas ref={canvasRef} id="pixel4te-canvas" onClick={drawPoint} />
       </div>
       <Actions />
       <div className="mt-3">

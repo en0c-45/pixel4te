@@ -5,6 +5,7 @@ import {
   createContext,
   MutableRefObject,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -12,6 +13,7 @@ import {
   useState,
 } from "react";
 import { paletteList } from "../constants";
+import { getRgbaString } from "../lib/helpers/get-rgba-string";
 import similarColor from "../lib/helpers/similar-color";
 
 type InputEvent = ChangeEvent<HTMLInputElement>;
@@ -40,6 +42,11 @@ interface EditorContext {
   uploadToIpfs: () => void;
   isLoadingUploadButton: boolean;
   ipfsHash: string;
+  drawPoint: (e: any) => void;
+  currentPointColor: string;
+  setCurrentPointColor: (value: string) => void;
+  onPixelToPixel: boolean;
+  handleOnPixelToPixel: (e: InputEvent) => void;
 }
 
 const ContextEditor = createContext<EditorContext | null>(null);
@@ -56,6 +63,8 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
   const [isLoadingUploadButton, setIsLoadingUploadButton] = useState(false);
   const [ipfsHash, setIpfsHash] = useState("");
   const [imageFile, setImageFile] = useState<File>();
+  const [currentPointColor, setCurrentPointColor] = useState("black");
+  const [onPixelToPixel, setOnPixelToPixel] = useState(false);
   // Source of image input
   const fromImgRef = useRef<HTMLImageElement>(undefined!);
   // Canvas used to represent image in the editor
@@ -80,16 +89,20 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
 
   const handleGrayscale = (e: InputEvent) => {
     if (onPalette) setOnPalette(false);
+    if (onPixelToPixel) setOnPixelToPixel(false);
     setGrayscale(e.target.checked);
   };
 
   const handleOnPalette = (e: InputEvent) => {
     if (grayscale) setGrayscale(false);
+    if (onPixelToPixel) setOnPixelToPixel(false);
     setOnPalette(e.target.checked);
   };
 
   const selectedPalette = useMemo(() => {
-    return paletteList[currentPalette]!;
+    const _currentPalette = paletteList[currentPalette]!;
+    setCurrentPointColor(getRgbaString(_currentPalette[0]!));
+    return _currentPalette;
   }, [currentPalette]);
 
   const handleChangeCurrentPalette = (action: "normal" | "random") => {
@@ -163,6 +176,16 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
       drawCanvas(true);
     };
     fromImgRef.current.id = rawImage.name;
+  };
+
+  const handleOnPixelToPixel = (e: InputEvent) => {
+    setOnPixelToPixel(e.target.checked);
+    if (e.target.checked && !onPalette) {
+      setOnPalette(e.target.checked);
+      if (grayscale) {
+        setGrayscale(false);
+      }
+    }
   };
 
   function drawPreCanvas() {
@@ -313,6 +336,53 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
     link.click();
   }
 
+  const drawPoint = useCallback(
+    (e: any) => {
+      if (!onPixelToPixel) return;
+      var ctx = canvasRef.current.getContext("2d")!;
+      ctx.beginPath();
+
+      let divisor = 0.01 * blocksize;
+      let sizeW =
+        canvasRef.current.width / (fromImgRef.current.width * divisor);
+      let sizeH =
+        canvasRef.current.height / (fromImgRef.current.height * divisor);
+
+      let positionsX: number[] = [];
+      let positionsY: number[] = [];
+
+      for (let i = 0; i < fromImgRef.current.width * divisor; i++) {
+        if (i == 0) {
+          positionsX[i] = 0;
+        } else {
+          positionsX[i] = positionsX[i - 1]! + sizeW;
+        }
+      }
+      for (let i = 0; i < fromImgRef.current.height * divisor; i++) {
+        if (i == 0) {
+          positionsY[i] = 0;
+        } else {
+          positionsY[i] = positionsY[i - 1]! + sizeH;
+        }
+      }
+
+      let a = positionsX.find((value) => e.nativeEvent.offsetX < value);
+      let b = positionsY.find((value) => e.nativeEvent.offsetY < value);
+
+      if (!a) {
+        a = canvasRef.current.width;
+      }
+      if (!b) {
+        b = canvasRef.current.height;
+      }
+
+      ctx.rect(a - sizeW, b - sizeH, sizeW, sizeH);
+      ctx.fillStyle = currentPointColor;
+      ctx.fill();
+    },
+    [blocksize, currentPointColor, onPixelToPixel]
+  );
+
   function uploadToIpfs() {
     const tempCanvas = getTargetImage();
     setIsLoadingUploadButton(true);
@@ -362,6 +432,11 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
         uploadToIpfs,
         isLoadingUploadButton,
         ipfsHash,
+        drawPoint,
+        currentPointColor,
+        setCurrentPointColor,
+        onPixelToPixel,
+        handleOnPixelToPixel,
       }}
     >
       {children}
