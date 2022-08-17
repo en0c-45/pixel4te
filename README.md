@@ -127,7 +127,7 @@ Examples:
 
 1. thom yorke pixel art
 
-https://github.com/en0c-026/pixel4te/blob/master/docs/screenshot/thom-yorke-pixel-art.mp4
+![](https://github.com/en0c-026/pixel4te/blob/master/docs/screenshot/thom-yorke-pixel-art.mp4)
 
 
 
