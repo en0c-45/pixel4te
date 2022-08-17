@@ -127,7 +127,16 @@ Examples:
 
 1. thom yorke pixel art
 
-<video src='https://github.com/en0c-026/pixel4te/blob/master/docs/clip/thom-torke-pixel-art.mp4' width=180/>
+https://user-images.githubusercontent.com/28759552/185225459-942b16cb-1d65-43db-b602-8868aa565593.mp4
+
+2. upload to ipfs and download image
+
+https://user-images.githubusercontent.com/28759552/185225569-3344f38f-7038-4203-a1dd-f5bf0fc32a0f.mp4
+
+3. elon musk pixel art
+
+https://user-images.githubusercontent.com/28759552/185225614-cd5f6a87-9a3d-49a0-ba57-bf8a37acee7c.mp4
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
