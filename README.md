@@ -70,7 +70,7 @@ Convert your image to pixels, apply a color palette, draw pixel by pixel, upload
 
 ### Built With
 
-* [Next.js][https://nextjs.org]
+* [Next.js](https://nextjs.org)
 * [NFT Storage](https://nft.storage)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
