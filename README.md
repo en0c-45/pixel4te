@@ -127,8 +127,7 @@ Examples:
 
 1. thom yorke pixel art
 
-![](https://github.com/en0c-026/pixel4te/blob/master/docs/clip/thom-torke-pixel-art.mp4)
-<video src='your URL here' width=180/>
+<video src='https://github.com/en0c-026/pixel4te/blob/master/docs/clip/thom-torke-pixel-art.mp4' width=180/>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
