@@ -13,8 +13,8 @@ import {
   useState,
 } from "react";
 import { paletteList } from "../constants";
-import { getRgbaString } from "../lib/helpers/get-rgba-string";
-import similarColor from "../lib/helpers/similar-color";
+import getRgbaString from "../utils/get-rgba-string";
+import similarColor from "../utils/similar-color";
 
 type InputEvent = ChangeEvent<HTMLInputElement>;
 type ImageSize = { width: number; height: number };

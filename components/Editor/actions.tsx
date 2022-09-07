@@ -1,7 +1,7 @@
 import { Button, Spinner } from "flowbite-react";
 import { HiDownload } from "react-icons/hi";
 import { textContent } from "../../constants";
-import { useEditor } from "../../context/editor";
+import { useEditor } from "../../contexts/editor";
 
 export default function Actions() {
   const { saveImage, fromImgRef, uploadToIpfs, isLoadingUploadButton } =

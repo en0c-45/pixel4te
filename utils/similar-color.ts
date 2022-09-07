@@ -1,4 +1,5 @@
-import { paletteList } from "./../../constants";
+import { paletteList } from "../constants";
+
 type Color = number[];
 function colorSim(rgbColor: Color, compareColor: Color) {
   let d = 0;

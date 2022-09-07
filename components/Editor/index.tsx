@@ -1,7 +1,7 @@
 import { FileInput, Tooltip } from "flowbite-react";
 import { HiClipboardCopy } from "react-icons/hi";
 import { textContent } from "../../constants";
-import { useEditor } from "../../context/editor";
+import { useEditor } from "../../contexts/editor";
 import Actions from "./actions";
 import Controls from "./controls";
 

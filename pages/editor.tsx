@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Editor from "../components/Editor";
 import { textContent } from "../constants";
-import { EditorProvider } from "../context/editor";
+import { EditorProvider } from "../contexts/editor";
 
 export default function App() {
   return (
