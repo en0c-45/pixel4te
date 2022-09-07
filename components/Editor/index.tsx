@@ -1,7 +1,8 @@
-import { FileInput, Tooltip } from "flowbite-react";
+import { FileInput } from "flowbite-react";
 import { HiClipboardCopy } from "react-icons/hi";
 import { textContent } from "../../constants";
 import { useEditor } from "../../contexts/editor";
+import Tooltip from "../Common/tooltip";
 import Actions from "./actions";
 import Controls from "./controls";
 
@@ -31,26 +32,21 @@ export default function Editor() {
         <canvas ref={canvasRef} id="pixel4te-canvas" onClick={drawPoint} />
       </div>
       <Actions />
-      <Tooltip
-        content="Copied!"
-        trigger="click"
-        placement="right"
-        arrow={false}
-      >
-        {ipfsHash !== "" && (
-          <div className="flex items-center">
-            <p className="select-none text-sm font-medium underline dark:text-slate-50">
-              {`ipfs://${ipfsHash.substring(0, 18)}...${ipfsHash.substring(
-                ipfsHash.length - 18
-              )}`}
-            </p>
+      {ipfsHash !== "" && (
+        <div className="flex items-center">
+          <p className="select-none text-sm font-medium underline dark:text-slate-50">
+            {`ipfs://${ipfsHash.substring(0, 18)}...${ipfsHash.substring(
+              ipfsHash.length - 18
+            )}`}
+          </p>
+          <Tooltip msg="copied!" triggerClick={true}>
             <HiClipboardCopy
               onClick={copyIpfsHash}
               className="ml-2 h-5 w-5 text-gray-900 dark:text-slate-50"
             />
-          </div>
-        )}
-      </Tooltip>
+          </Tooltip>
+        </div>
+      )}
     </div>
   );
 }
