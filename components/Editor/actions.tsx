@@ -7,7 +7,7 @@ export default function Actions() {
   const { saveImage, fromImgRef, uploadToIpfs, isLoadingUploadButton } =
     useEditor();
   return (
-    <div className="flex justify-center space-x-2 bg-green-200">
+    <div className="flex justify-center space-x-2">
       <ActionButton
         label={textContent.app.editor.actions.buttons.download.label}
         icon={<HiDownload className="ml-1 h-5 w-5" />}
