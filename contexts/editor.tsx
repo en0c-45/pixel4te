@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { NFTStorage } from "nft.storage";
 import {
-  ChangeEvent,
   createContext,
   MutableRefObject,
   ReactNode,
@@ -13,10 +12,10 @@ import {
   useState,
 } from "react";
 import { paletteList } from "../constants";
+import { InputEvent } from "../interfaces";
 import getRgbaString from "../utils/get-rgba-string";
 import similarColor from "../utils/similar-color";
 
-type InputEvent = ChangeEvent<HTMLInputElement>;
 type ImageSize = { width: number; height: number };
 
 interface EditorContext {
@@ -326,9 +325,13 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
   function saveImage() {
     const tempCanvas = getTargetImage();
     const link = document.createElement("a");
-    let quality: string | undefined = undefined;
-    if (imageFile?.type === "image/jpg") {
-      quality = "1.0";
+    let quality: number | undefined = undefined;
+    if (
+      imageFile?.type === "image/jpg" ||
+      imageFile?.type === "image/jpeg" ||
+      imageFile?.type === "image/webp"
+    ) {
+      quality = 1;
     }
     link.download = imageFile?.name!;
     link.href = tempCanvas
@@ -341,14 +344,13 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
     (e: any) => {
       if (!onPixelToPixel) return;
       var ctx = canvasRef.current.getContext("2d")!;
-      ctx.beginPath();
+      //ctx.beginPath();
 
       let divisor = 0.01 * blocksize;
       let sizeW =
         canvasRef.current.width / (fromImgRef.current.width * divisor);
       let sizeH =
         canvasRef.current.height / (fromImgRef.current.height * divisor);
-
       let positionsX: number[] = [];
       let positionsY: number[] = [];
 
@@ -376,10 +378,8 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
       if (!b) {
         b = canvasRef.current.height;
       }
-
-      ctx.rect(a - sizeW, b - sizeH, sizeW, sizeH);
       ctx.fillStyle = currentPointColor;
-      ctx.fill();
+      ctx.fillRect(a - sizeW, b - sizeH, sizeW, sizeH);
     },
     [blocksize, currentPointColor, onPixelToPixel]
   );
@@ -388,7 +388,8 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
     const tempCanvas = getTargetImage();
     setIsLoadingUploadButton(true);
     tempCanvas.toBlob(async (blob) => {
-      if (!process.env["NEXT_PUBLIC_NFT_STORAGE_API_KEY"]) return;
+      if (!process.env["NEXT_PUBLIC_NFT_STORAGE_API_KEY"])
+        throw new Error("NFT Storage API Key not defined in .env file");
       const client = new NFTStorage({
         token: process.env["NEXT_PUBLIC_NFT_STORAGE_API_KEY"],
       });
