@@ -139,6 +139,8 @@ export const textContent = {
         },
         pixelToPixel: {
           label: "pixel to pixel",
+          tooltip:
+            "Draw pixel by pixel. Click on the color palette to change the color of the point. Press ctrl + move the mouse over the image to draw consecutive points.",
         },
       },
       actions: {

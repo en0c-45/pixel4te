@@ -23,8 +23,8 @@ export default function Controls() {
     handleOnPixelToPixel,
   } = useEditor();
   return (
-    <div className="w-full space-y-1 py-2">
-      <div className="mx-auto flex max-w-xl flex-wrap items-center justify-evenly space-y-3 py-2 dark:border-gray-700 sm:space-y-0">
+    <div className="mx-auto w-full space-y-4 sm:w-1/2 md:w-1/3">
+      <div className="mx-auto w-fit">
         <Label htmlFor="blocksize">
           <div className="flex items-center space-x-2">
             <p className="inline align-middle">
@@ -49,6 +49,8 @@ export default function Controls() {
             </Button.Group>
           </div>
         </Label>
+      </div>
+      <div className="flex justify-between">
         <Label htmlFor="grayscale">
           <p className="mr-2 inline align-middle">
             {textContent.app.editor.controls.grayscale.label}
@@ -69,9 +71,29 @@ export default function Controls() {
             id="on-palette"
           />
         </Label>
+        <Label htmlFor="pixel-to-pixel">
+          <Tooltip
+            content={
+              <div className="w-32">
+                <p className="text-center text-[0.7rem]">
+                  {textContent.app.editor.controls.pixelToPixel.tooltip}
+                </p>
+              </div>
+            }
+          >
+            <p className="mr-2 inline align-middle">
+              {textContent.app.editor.controls.pixelToPixel.label}
+            </p>
+            <Checkbox
+              checked={onPixelToPixel}
+              onChange={handleOnPixelToPixel}
+              id="pixel-to-pixel"
+            />
+          </Tooltip>
+        </Label>
       </div>
-      <div className="mx-auto max-w-fit">
-        <div className="flex items-center justify-center space-x-10">
+      <div>
+        <div className="flex justify-evenly">
           <Label htmlFor="width">
             <div className="flex items-center space-x-1">
               <p>{textContent.app.editor.controls.sizes.label.width}</p>
@@ -118,7 +140,7 @@ export default function Controls() {
           {textContent.app.editor.controls.sizes.note}
         </p>
       </div>
-      <div className="mt-3 flex flex-col items-center space-y-2 border-t border-slate-300 py-4 dark:border-gray-700">
+      <div className="mx-auto w-fit">
         <Button.Group>
           <Button
             onClick={() => handleChangeCurrentPalette("normal")}
@@ -133,49 +155,28 @@ export default function Controls() {
             {textContent.app.editor.controls.palette.buttons.random.label}
           </Button>
         </Button.Group>
-        <div className="flex w-full flex-col items-center space-y-2 border-b border-slate-300 pb-4 dark:border-gray-700">
-          <p className="text-sm font-medium text-gray-900 dark:text-gray-300">
-            {textContent.app.editor.controls.palette.label} {currentPalette + 1}
-          </p>
-          <div className="flex items-center">
-            {selectedPalette.map((palette, i) => (
-              <div
-                key={i}
-                className="h-5 w-5 border border-gray-800 dark:border-slate-50 sm:h-7 sm:w-7"
-                style={{
-                  backgroundColor: getRgbaString(palette),
-                }}
-                onClick={() => setCurrentPointColor(getRgbaString(palette))}
-                role="button"
-                tabIndex={0}
-                onKeyPress={() => undefined}
-              ></div>
-            ))}
-          </div>
+      </div>
+      <div className="flex items-center justify-center">
+        <p className="mr-2 align-middle font-medium text-gray-900 dark:text-gray-300">
+          {currentPalette + 1}
+        </p>
+        <div className="flex w-24 flex-wrap sm:w-32">
+          {selectedPalette.map((palette, i) => (
+            <div
+              key={i}
+              className="h-5 w-5 border border-gray-800 dark:border-slate-50 sm:h-7 sm:w-7"
+              style={{
+                backgroundColor: getRgbaString(palette),
+              }}
+              onClick={() => setCurrentPointColor(getRgbaString(palette))}
+              role="button"
+              tabIndex={0}
+              onKeyPress={() => undefined}
+            ></div>
+          ))}
         </div>
-        <div className="flex items-center space-x-2 pt-2">
-          <Label htmlFor="pixel-to-pixel">
-            <Tooltip
-              content={
-                <div className="w-32">
-                  <p className="text-[0.7rem]">
-                    Check this if you want to draw pixel by pixel. Point color
-                    is chosen by clicking on the colors in the palette.
-                  </p>
-                </div>
-              }
-            >
-              <p className="mr-2 inline align-middle">
-                {textContent.app.editor.controls.pixelToPixel.label}
-              </p>
-              <Checkbox
-                checked={onPixelToPixel}
-                onChange={handleOnPixelToPixel}
-                id="pixel-to-pixel"
-              />
-            </Tooltip>
-          </Label>
-          <p className="pl-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+        <div className="flex items-center">
+          <p className="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             point color:
           </p>
           <div
