@@ -23,7 +23,7 @@ export default function Controls() {
     handleOnPixelToPixel,
   } = useEditor();
   return (
-    <div className="mx-auto w-full space-y-4 sm:w-1/2 md:w-1/3">
+    <div className="mx-auto w-full space-y-4 sm:w-1/2 lg:w-1/3">
       <div className="mx-auto w-fit">
         <Label htmlFor="blocksize">
           <div className="flex items-center space-x-2">
@@ -50,7 +50,7 @@ export default function Controls() {
           </div>
         </Label>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-evenly">
         <Label htmlFor="grayscale">
           <p className="mr-2 inline align-middle">
             {textContent.app.editor.controls.grayscale.label}
@@ -156,11 +156,11 @@ export default function Controls() {
           </Button>
         </Button.Group>
       </div>
-      <div className="flex items-center justify-center">
-        <p className="mr-2 align-middle font-medium text-gray-900 dark:text-gray-300">
+      <div className="flex items-center justify-evenly">
+        <p className="flex-none align-middle font-medium text-gray-900 dark:text-gray-300">
           {currentPalette + 1}
         </p>
-        <div className="flex w-24 flex-wrap sm:w-32">
+        <div className="flex h-10 w-40 flex-none flex-wrap items-center sm:h-14 sm:w-60">
           {selectedPalette.map((palette, i) => (
             <div
               key={i}
@@ -175,7 +175,7 @@ export default function Controls() {
             ></div>
           ))}
         </div>
-        <div className="flex items-center">
+        <div className="ml-4 flex items-center">
           <p className="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             point color:
           </p>
