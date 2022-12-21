@@ -1,7 +1,7 @@
 import { Button, Checkbox, Label, TextInput, Tooltip } from "flowbite-react";
 import { textContent } from "../../constants";
 import { useEditor } from "../../contexts/editor";
-import getRgbaString from "../../utils/get-rgba-string";
+import getRgbaString from "../../lib/utils/get-rgba-string";
 
 export default function Controls() {
   const {

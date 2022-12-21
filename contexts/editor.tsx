@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import { NFTStorage } from "nft.storage";
 import {
   createContext,
   MutableRefObject,
@@ -11,10 +10,11 @@ import {
   useRef,
   useState,
 } from "react";
-import { paletteList } from "../constants";
+import { MAX_BLOCKSIZE, MIN_BLOCKSIZE, paletteList } from "../constants";
 import { InputEvent } from "../interfaces";
-import getRgbaString from "../utils/get-rgba-string";
-import similarColor from "../utils/similar-color";
+import upload from "../lib/ipfs/upload";
+import getRgbaString from "../lib/utils/get-rgba-string";
+import similarColor from "../lib/utils/similar-color";
 
 type ImageSize = { width: number; height: number };
 
@@ -78,11 +78,11 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
 
   const handleUpDownBlocksize = (action: "up" | "down") => {
     if (action === "up") {
-      if (blocksize === 36) return;
+      if (blocksize === MAX_BLOCKSIZE) return;
       setBlocksize((v) => v + 1);
     }
     if (action === "down") {
-      if (blocksize === 1) return;
+      if (blocksize === MIN_BLOCKSIZE) return;
       setBlocksize((v) => v - 1);
     }
   };
@@ -108,7 +108,7 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
   const handleChangeCurrentPalette = (action: "normal" | "random") => {
     if (action === "normal") {
       setCurrentPalette((v) => {
-        if (v === 99) return 0;
+        if (v === paletteList.length - 1) return 0;
         return v + 1;
       });
     }
@@ -348,9 +348,16 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
 
       let divisor = 0.01 * blocksize;
       let sizeW =
-        canvasRef.current.width / (fromImgRef.current.width * divisor);
+        Math.round(
+          (canvasRef.current.width / (fromImgRef.current.width * divisor)) * 10
+        ) / 10;
       let sizeH =
-        canvasRef.current.height / (fromImgRef.current.height * divisor);
+        Math.round(
+          (canvasRef.current.height / (fromImgRef.current.height * divisor)) *
+            10
+        ) / 10;
+      console.log(sizeW);
+      console.log(sizeH);
       let positionsX: number[] = [];
       let positionsY: number[] = [];
 
@@ -379,7 +386,7 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
         b = canvasRef.current.height;
       }
       ctx.fillStyle = currentPointColor;
-      ctx.fillRect(a - sizeW, b - sizeH, sizeW, sizeH);
+      ctx.fillRect(a - sizeW, b - sizeH, sizeW * 1.005, sizeH * 1.005);
     },
     [blocksize, currentPointColor, onPixelToPixel]
   );
@@ -388,12 +395,7 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
     const tempCanvas = getTargetImage();
     setIsLoadingUploadButton(true);
     tempCanvas.toBlob(async (blob) => {
-      if (!process.env["NEXT_PUBLIC_NFT_STORAGE_API_KEY"])
-        throw new Error("NFT Storage API Key not defined in .env file");
-      const client = new NFTStorage({
-        token: process.env["NEXT_PUBLIC_NFT_STORAGE_API_KEY"],
-      });
-      const cid = await client.storeBlob(blob!);
+      const cid = await upload(blob!);
       setIpfsHash(cid);
       setIsLoadingUploadButton(false);
     });
