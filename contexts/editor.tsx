@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import axios from "axios";
 import {
   createContext,
   MutableRefObject,
@@ -62,6 +63,7 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
   });
   const [isLoadingUploadButton, setIsLoadingUploadButton] = useState(false);
   const [ipfsHash, setIpfsHash] = useState("");
+  const [sharePathUrl, setSharePathUrl] = useState("");
   const [imageFile, setImageFile] = useState<File>();
   const [currentPointColor, setCurrentPointColor] = useState("black");
   const [onPixelToPixel, setOnPixelToPixel] = useState(false);
@@ -396,8 +398,18 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
     setIsLoadingUploadButton(true);
     tempCanvas.toBlob(async (blob) => {
       const cid = await upload(blob!);
-      setIpfsHash(cid);
-      setIsLoadingUploadButton(false);
+      try {
+        const { data } = await axios.post("/api/item", {
+          ipfsCid: cid,
+          width: tempCanvas.width,
+          height: tempCanvas.height,
+        });
+        setSharePathUrl(`/post/${data.insertedId}`);
+        setIpfsHash(cid);
+        setIsLoadingUploadButton(false);
+      } catch (error) {
+        setIsLoadingUploadButton(false);
+      }
     });
   }
 
