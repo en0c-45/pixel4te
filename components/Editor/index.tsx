@@ -27,7 +27,7 @@ export default function Editor() {
         </p>
       </div>
       <Controls />
-      <div className="flex justify-center bg-slate-200 dark:bg-gray-700">
+      <div className="flex justify-center rounded-xl bg-slate-200 dark:bg-gray-700">
         <canvas
           ref={canvasRef}
           id="pixel4te-canvas"

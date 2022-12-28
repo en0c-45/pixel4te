@@ -23,8 +23,8 @@ export default function Controls() {
     handleOnPixelToPixel,
   } = useEditor();
   return (
-    <div className="mx-auto w-full space-y-4 sm:w-1/2 lg:w-1/3">
-      <div className="mx-auto w-fit">
+    <div className="mx-auto w-full space-y-4 rounded-xl bg-slate-200 py-3 dark:border dark:bg-gray-800 lg:flex lg:flex-wrap lg:items-center lg:justify-around lg:gap-6 lg:space-y-0 lg:px-20 2xl:justify-around">
+      <div className="mx-auto w-fit lg:mx-0">
         <Label htmlFor="blocksize">
           <div className="flex items-center space-x-2">
             <p className="inline align-middle">
@@ -50,7 +50,7 @@ export default function Controls() {
           </div>
         </Label>
       </div>
-      <div className="flex justify-evenly">
+      <div className="flex justify-center gap-6">
         <Label htmlFor="grayscale">
           <p className="mr-2 inline align-middle">
             {textContent.app.editor.controls.grayscale.label}
@@ -93,7 +93,7 @@ export default function Controls() {
         </Label>
       </div>
       <div>
-        <div className="flex justify-evenly">
+        <div className="flex justify-center gap-6">
           <Label htmlFor="width">
             <div className="flex items-center space-x-1">
               <p>{textContent.app.editor.controls.sizes.label.width}</p>
@@ -140,51 +140,53 @@ export default function Controls() {
           {textContent.app.editor.controls.sizes.note}
         </p>
       </div>
-      <div className="mx-auto w-fit">
-        <Button.Group>
-          <Button
-            onClick={() => handleChangeCurrentPalette("normal")}
-            disabled={!onPalette}
-          >
-            {textContent.app.editor.controls.palette.buttons.change.label}
-          </Button>
-          <Button
-            onClick={() => handleChangeCurrentPalette("random")}
-            disabled={!onPalette}
-          >
-            {textContent.app.editor.controls.palette.buttons.random.label}
-          </Button>
-        </Button.Group>
-      </div>
-      <div className="flex items-center justify-evenly">
-        <p className="flex-none align-middle font-medium text-gray-900 dark:text-gray-300">
-          {currentPalette + 1}
-        </p>
-        <div className="flex h-10 w-40 flex-none flex-wrap items-center sm:h-14 sm:w-60">
-          {selectedPalette.map((palette, i) => (
-            <div
-              key={i}
-              className="h-5 w-5 border border-gray-800 dark:border-slate-50 sm:h-7 sm:w-7"
-              style={{
-                backgroundColor: getRgbaString(palette),
-              }}
-              onClick={() => setCurrentPointColor(getRgbaString(palette))}
-              role="button"
-              tabIndex={0}
-              onKeyPress={() => undefined}
-            ></div>
-          ))}
+      <div className="gap-4 md:flex md:items-center md:justify-center">
+        <div className="mx-auto mb-2 w-fit md:mx-0 md:mb-0">
+          <Button.Group>
+            <Button
+              onClick={() => handleChangeCurrentPalette("normal")}
+              disabled={!onPalette}
+            >
+              {textContent.app.editor.controls.palette.buttons.change.label}
+            </Button>
+            <Button
+              onClick={() => handleChangeCurrentPalette("random")}
+              disabled={!onPalette}
+            >
+              {textContent.app.editor.controls.palette.buttons.random.label}
+            </Button>
+          </Button.Group>
         </div>
-        <div className="ml-4 flex items-center">
-          <p className="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-            point color:
+        <div className="flex items-center justify-center gap-6">
+          <p className="flex-none align-middle font-medium text-gray-900 dark:text-gray-300">
+            {currentPalette + 1}
           </p>
-          <div
-            className="h-4 w-4 border border-gray-800 dark:border-slate-50 sm:h-5 sm:w-5"
-            style={{
-              backgroundColor: currentPointColor,
-            }}
-          ></div>
+          <div className="flex h-10 w-40 flex-none flex-wrap items-center sm:h-14 sm:w-60">
+            {selectedPalette.map((palette, i) => (
+              <div
+                key={i}
+                className="h-5 w-5 border border-gray-800 dark:border-slate-50 sm:h-7 sm:w-7"
+                style={{
+                  backgroundColor: getRgbaString(palette),
+                }}
+                onClick={() => setCurrentPointColor(getRgbaString(palette))}
+                role="button"
+                tabIndex={0}
+                onKeyPress={() => undefined}
+              ></div>
+            ))}
+          </div>
+          <div className="flex items-center">
+            <p className="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              point color:
+            </p>
+            <div
+              className="h-4 w-4 border border-gray-800 dark:border-slate-50 sm:h-5 sm:w-5"
+              style={{
+                backgroundColor: currentPointColor,
+              }}
+            ></div>
+          </div>
         </div>
       </div>
     </div>
