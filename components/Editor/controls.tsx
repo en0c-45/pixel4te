@@ -81,6 +81,7 @@ export default function Controls() {
                 </p>
               </div>
             }
+            placement="bottom"
           >
             <p className="mr-2 inline align-middle">
               {textContent.app.editor.controls.pixelToPixel.label}
