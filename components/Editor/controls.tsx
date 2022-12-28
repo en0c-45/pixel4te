@@ -1,4 +1,5 @@
 import { Button, Checkbox, Label, TextInput, Tooltip } from "flowbite-react";
+import { BsPencil } from "react-icons/bs";
 import { textContent } from "../../constants";
 import { useEditor } from "../../contexts/editor";
 import getRgbaString from "../../lib/utils/get-rgba-string";
@@ -177,15 +178,13 @@ export default function Controls() {
             ))}
           </div>
           <div className="flex items-center">
-            <p className="mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              point color:
-            </p>
             <div
               className="h-4 w-4 border border-gray-800 dark:border-slate-50 sm:h-5 sm:w-5"
               style={{
                 backgroundColor: currentPointColor,
               }}
             ></div>
+            <BsPencil className="ml-2 h-5 w-5 text-gray-900 dark:text-gray-300" />
           </div>
         </div>
       </div>
