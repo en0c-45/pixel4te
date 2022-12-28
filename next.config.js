@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["flowbite.com"],
+    domains: ["flowbite.com", "ipfs.io"],
   },
   reactStrictMode: true,
   swcMinify: true,
