@@ -20,7 +20,7 @@ export default function Editor() {
           accept={textContent.app.editor.fileInput.supportedFormats}
           id="editor-input-file"
           onChange={handleChangeInputFile}
-          color="green"
+          color="gray"
         />
         <p className="mt-1 text-center text-[0.6rem] font-normal text-gray-500">
           {textContent.app.editor.fileInput.note}
