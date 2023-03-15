@@ -46,8 +46,14 @@ interface EditorContext {
   currentPointColor: string;
   setCurrentPointColor: (value: string) => void;
   onPixelToPixel: boolean;
-  handleOnPixelToPixel: (e: InputEvent) => void;
   copyIpfsHash: () => void;
+  shareUrl: string;
+  pointSize: number;
+  handleOnChangePointSize: (e: any) => void;
+  handleOnPixelToPixel: (e: any) => void;
+  imageFile: File | undefined;
+  generateDataURL: () => void;
+  dataUrl: string;
 }
 
 const ContextEditor = createContext<EditorContext | null>(null);
@@ -63,9 +69,13 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
   });
   const [isLoadingUploadButton, setIsLoadingUploadButton] = useState(false);
   const [ipfsHash, setIpfsHash] = useState("");
-  const [sharePathUrl, setSharePathUrl] = useState("");
+  const [shareUrl, setShareUrl] = useState("");
+  const [dataUrl, setDataUrl] = useState("");
+
   const [imageFile, setImageFile] = useState<File>();
   const [currentPointColor, setCurrentPointColor] = useState("black");
+  const [pointSize, setPointSize] = useState(1);
+
   const [onPixelToPixel, setOnPixelToPixel] = useState(false);
   // Source of image input
   const fromImgRef = useRef<HTMLImageElement>(undefined!);
@@ -188,6 +198,23 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
         setGrayscale(false);
       }
     }
+  };
+
+  const handleOnChangePointSize = (e: InputEvent) => {
+    // Obtener el valor ingresado por el usuario
+    const inputValue = e.target.value;
+
+    // Filtrar solo los caracteres numéricos
+    const numericValue = inputValue.replace(/\D/g, "");
+
+    // Convertir el valor numérico a un entero
+    const intValue = parseInt(numericValue);
+
+    // Asegurarse de que el valor esté dentro del rango de 1 a 100
+    const clampedValue = Math.max(1, Math.min(intValue, 100));
+
+    // Actualizar el valor del input con el valor filtrado y clamped
+    setPointSize(clampedValue);
   };
 
   function drawPreCanvas() {
@@ -342,6 +369,19 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
     link.click();
   }
 
+  function generateDataURL() {
+    const tempCanvas = getTargetImage();
+    let quality: number | undefined = undefined;
+    if (
+      imageFile?.type === "image/jpg" ||
+      imageFile?.type === "image/jpeg" ||
+      imageFile?.type === "image/webp"
+    ) {
+      quality = 1;
+    }
+    setDataUrl(tempCanvas.toDataURL(imageFile?.type!, quality));
+  }
+
   const drawPoint = useCallback(
     (e: any) => {
       if (!onPixelToPixel) return;
@@ -396,6 +436,8 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
   function uploadToIpfs() {
     const tempCanvas = getTargetImage();
     setIsLoadingUploadButton(true);
+    setShareUrl("");
+    setIpfsHash("");
     tempCanvas.toBlob(async (blob) => {
       const cid = await upload(blob!);
       try {
@@ -404,7 +446,7 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
           width: tempCanvas.width,
           height: tempCanvas.height,
         });
-        setSharePathUrl(`/post/${data.insertedId}`);
+        setShareUrl(`${window.location.origin}/post/${data.insertedId}`);
         setIpfsHash(cid);
         setIsLoadingUploadButton(false);
       } catch (error) {
@@ -459,6 +501,12 @@ const EditorProvider = ({ children }: { children: ReactNode }) => {
         onPixelToPixel,
         handleOnPixelToPixel,
         copyIpfsHash,
+        shareUrl,
+        pointSize,
+        handleOnChangePointSize,
+        imageFile,
+        generateDataURL,
+        dataUrl,
       }}
     >
       {children}
