@@ -1,18 +1,11 @@
 import { FileInput } from "flowbite-react";
 import { textContent } from "../../constants";
 import { useEditor } from "../../contexts/editor";
-import AddressOrHash from "../Common/address-or-hash";
 import Actions from "./actions";
 import Controls from "./controls";
 
 export default function Editor() {
-  const {
-    handleChangeInputFile,
-    canvasRef,
-    ipfsHash,
-    drawPoint,
-    copyIpfsHash,
-  } = useEditor();
+  const { handleChangeInputFile, canvasRef, drawPoint } = useEditor();
   return (
     <div className="space-y-4 rounded-xl bg-slate-100 px-2 py-8 shadow-md dark:bg-gray-800 sm:px-4">
       <div className="mx-auto w-full sm:w-1/2 lg:w-1/3">
@@ -39,14 +32,6 @@ export default function Editor() {
         />
       </div>
       <Actions />
-      {ipfsHash !== "" && (
-        <AddressOrHash
-          value={ipfsHash}
-          lengthSubString={18}
-          copyIcon={true}
-          handleOnClickCopy={copyIpfsHash}
-        />
-      )}
     </div>
   );
 }

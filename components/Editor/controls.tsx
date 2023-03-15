@@ -22,6 +22,8 @@ export default function Controls() {
     setCurrentPointColor,
     onPixelToPixel,
     handleOnPixelToPixel,
+    handleOnChangePointSize,
+    pointSize,
   } = useEditor();
   return (
     <div className="mx-auto w-full space-y-4 rounded-xl bg-slate-200 py-3 dark:border dark:bg-gray-800 lg:flex lg:flex-wrap lg:items-center lg:justify-around lg:gap-6 lg:space-y-0 lg:px-20 2xl:justify-around">
@@ -186,6 +188,11 @@ export default function Controls() {
               }}
             ></div>
             <BsPencil className="ml-2 h-5 w-5 text-gray-900 dark:text-gray-300" />
+            <input
+              type="text"
+              value={pointSize}
+              onChange={handleOnChangePointSize}
+            />
           </div>
         </div>
       </div>

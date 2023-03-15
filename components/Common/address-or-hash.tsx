@@ -15,19 +15,23 @@ export default function AddressOrHash({
   handleOnClickCopy,
 }: Props) {
   return (
-    <div className="flex justify-center">
-      <p className="select-none text-sm font-medium underline dark:text-white">
+    <div className="flex items-center gap-1">
+      <p className="select-none font-medium underline dark:text-white">
         {`${value.substring(0, lengthSubString)}...${value.substring(
           value.length - lengthSubString
         )}`}
       </p>
       {copyIcon && (
-        <Tooltip msg="copied!" triggerClick={true}>
-          <HiClipboardCopy
-            onClick={handleOnClickCopy}
-            className="ml-2 h-5 w-5 text-gray-900 dark:text-slate-50"
-          />
-        </Tooltip>
+        <Tooltip
+          key="copy-hash-address"
+          containerClassname="w-20 bg-slate-200 rounded-md h-full"
+          container={
+            <HiClipboardCopy className="h-5 w-5 text-slate-200 hover:cursor-pointer" />
+          }
+          onClickContainer={handleOnClickCopy}
+          content="Copied!"
+          trigger="click"
+        />
       )}
     </div>
   );
