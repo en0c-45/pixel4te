@@ -36,3 +36,8 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+hardhat/artifacts/
+hardhat/cache/
+hardhat/deployments/
+hardhat/node_modules/
