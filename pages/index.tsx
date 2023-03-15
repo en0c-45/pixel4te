@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Button } from "flowbite-react";
 import Head from "next/head";
 import Link from "next/link";
+import ActionButton from "../components/Common/action-button";
 import FeatureCard from "../components/Home/feature-card";
 import { textContent } from "../constants";
 
@@ -23,11 +23,12 @@ const Home = () => {
           </p>
           <div className="pt-6 sm:pt-8">
             <Link href="/editor">
-              <a>
-                <Button gradientDuoTone="purpleToPink" size="lg">
-                  {textContent.homepage.callToAcction.button}
-                </Button>
-              </a>
+              <div className="h-10">
+                <ActionButton
+                  label={textContent.homepage.callToAcction.button}
+                  onClick={() => {}}
+                />
+              </div>
             </Link>
           </div>
         </div>
