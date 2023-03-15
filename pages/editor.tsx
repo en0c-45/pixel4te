@@ -9,7 +9,7 @@ export default function App() {
         <title>{textContent.app.title}</title>
       </Head>
       <div className="w-full">
-          <Editor />
+        <Editor />
       </div>
     </>
   );

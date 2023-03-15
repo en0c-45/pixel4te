@@ -6,8 +6,13 @@ interface Props {
 }
 export default function InfoTooltip({ msg }: Props) {
   return (
-    <Tooltip msg={msg}>
-      <FiInfo className="mr-1 h-3 w-3" />
-    </Tooltip>
+    <Tooltip
+      key="music-brainz-id"
+      containerClassname="w-40 bg-slate-800 rounded-md"
+      container={
+        <FiInfo className="h-4 w-4 text-slate-300 hover:cursor-pointer" />
+      }
+      content={msg}
+    />
   );
 }

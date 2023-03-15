@@ -3,7 +3,6 @@ import { BigNumber } from "ethers";
 import { parseEther } from "ethers/lib/utils.js";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { parse } from "node:path/win32";
 import { useCallback, useEffect, useMemo, useState } from "react";
 // import { HiOutlineCamera } from "react-icons/hi";
 import { useAccount } from "wagmi";
