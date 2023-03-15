@@ -6,9 +6,9 @@ export type PostProps = { ipfsCid: string; width: number; height: number };
 export async function getPost(pathUrl: string): Promise<PostProps | null> {
   const client = await clientPromise;
   const collection = client.db("pixel4te").collection("posts");
-  const results = await collection.findOne(
-    new ObjectId(pathUrl.length != 24 ? 0 : pathUrl)
-  );
+  const results = await collection.findOne({
+    _id: new ObjectId(pathUrl.length != 24 ? 0 : pathUrl),
+  });
   if (results) {
     return {
       ipfsCid: results["ipfsCid"] as string,
