@@ -4,7 +4,6 @@ const nextConfig = {
     domains: ["flowbite.com", "ipfs.io"],
   },
   reactStrictMode: true,
-  swcMinify: true,
 };
 
 module.exports = nextConfig;
