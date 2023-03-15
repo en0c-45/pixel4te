@@ -153,19 +153,19 @@ https://user-images.githubusercontent.com/28759552/185225614-cd5f6a87-9a3d-49a0-
 - [x] resize output image size
 - [x] download your image to your device
 - [x] upload your image to the IPFS decentralized service
-- [ ] share your pixel art on your social networks
+- [x] share your pixel art on your social networks
 
 ### pixel4te NFT
-- [ ] connect your account from the browser wallet
-- [ ] stores the NFT metadata in the IPFS decentralized service
+- [x] connect your account from the browser wallet
+- [x] stores the NFT metadata in the IPFS decentralized service
 - [ ] record NFT metadata in pixel4te API and gets its ID
-- [ ] mint a new NFT in the pixel4te Collection
-- [ ] list and sell your nft en pixel4te Marketplace
-- [ ] set your NFT royalties and earn profit on every transfer
+- [x] mint a new NFT in the pixel4te Collection
+- [x] list and sell your nft en pixel4te Marketplace
+- [x] set your NFT royalties and earn profit on every transfer
 
 ### project features
-- [ ] own Infura IPFS gateway
-- [ ] buy custom domain
+- [x] own Infura IPFS gateway
+- [x] buy custom domain
 - [ ] SEO optimization
 - [ ] Discord community
 
