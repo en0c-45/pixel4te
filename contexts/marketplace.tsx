@@ -4,8 +4,6 @@ import { createContext, ReactNode, useContext } from "react";
 import useContractFunctionWrite from "../hooks/useContractFunctionWrite";
 import Pixel4te from "../lib/hardhat/artifacts/contracts/Pixel4te.sol/Pixel4te.json";
 import Marketplace from "../lib/hardhat/artifacts/contracts/Marketplace.sol/Marketplace.json";
-import { Alchemy, Network } from "alchemy-sdk";
-import { useAccount } from "wagmi";
 import useContractFunctionRead from "../hooks/useContractFunctionRead";
 
 interface MarketplaceInterface {

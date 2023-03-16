@@ -1,9 +1,7 @@
-import { CustomFlowbiteTheme } from "flowbite-react/lib/esm/components/Flowbite/FlowbiteTheme";
-
 export const MIN_BLOCKSIZE = 1;
 export const MAX_BLOCKSIZE = 36;
 
-export const flowbiteTheme: CustomFlowbiteTheme = {
+export const flowbiteTheme: any = {
   footer: {
     base: "flex flex-col",
     brand: {
