@@ -62,6 +62,7 @@
     }
   },
   "eslintConfig": {
+    "ignorePatterns": ["node_modules/", "hardhat/"],
     "extends": [
       "eslint:recommended",
       "next/core-web-vitals",
