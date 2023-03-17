@@ -162,6 +162,8 @@ https://user-images.githubusercontent.com/28759552/185225614-cd5f6a87-9a3d-49a0-
 - [x] mint a new NFT in the pixel4te Collection
 - [x] list and sell your nft en pixel4te Marketplace
 - [x] set your NFT royalties and earn profit on every transfer
+- [ ] accept the main ERC20 tokens
+- [ ] support for ethereum, bnb, chains.
 
 ### project features
 - [x] own Infura IPFS gateway
