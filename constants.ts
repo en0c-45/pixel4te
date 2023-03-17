@@ -59,7 +59,7 @@ export const textContent = {
     links: [
       { label: "Home", href: "/" },
       { label: "Editor", href: "/editor" },
-      { label: "NFT", href: "/nft" },
+      { label: "Marketplace", href: "/marketplace" },
     ],
   },
   homepage: {
