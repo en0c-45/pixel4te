@@ -1,5 +1,5 @@
 import { Footer } from "flowbite-react";
-import { BsGithub, BsTwitter } from "react-icons/bs";
+import { BsDiscord, BsMedium, BsTwitter } from "react-icons/bs";
 
 export default function FooterComponent(): JSX.Element {
   return (
@@ -18,10 +18,9 @@ export default function FooterComponent(): JSX.Element {
             <div>
               <Footer.Title title="Follow us" />
               <Footer.LinkGroup col>
-                <Footer.Link href="https://github.com/en0c-026">
-                  Github
-                </Footer.Link>
                 <Footer.Link href="#">Discord</Footer.Link>
+                <Footer.Link href="#">Twitter</Footer.Link>
+                <Footer.Link href="#">Medium</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>
@@ -38,7 +37,8 @@ export default function FooterComponent(): JSX.Element {
           <Footer.Copyright href="#" by="pixel4te" year={2022} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             <Footer.Icon href="#" icon={BsTwitter} />
-            <Footer.Icon href="#" icon={BsGithub} />
+            <Footer.Icon href="#" icon={BsMedium} />
+            <Footer.Icon href="#" icon={BsDiscord} />
           </div>
         </div>
       </div>
