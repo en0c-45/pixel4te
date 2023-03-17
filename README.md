@@ -158,7 +158,7 @@ https://user-images.githubusercontent.com/28759552/185225614-cd5f6a87-9a3d-49a0-
 ### pixel4te NFT
 - [x] connect your account from the browser wallet
 - [x] stores the NFT metadata in the IPFS decentralized service
-- [ ] record NFT metadata in pixel4te API and gets its ID
+- [x] record NFT metadata in pixel4te API and gets its ID
 - [x] mint a new NFT in the pixel4te Collection
 - [x] list and sell your nft en pixel4te Marketplace
 - [x] set your NFT royalties and earn profit on every transfer
