@@ -8,9 +8,8 @@
 <br />
 <div align="center">
   <a href="https://github.com/en0c-026/pixel4te">
-    <img src="public/favicon.png" alt="Logo" width="48" height="48">
+    <img src="https://user-images.githubusercontent.com/28759552/227783794-164b4ed4-cddd-4171-8fc2-19238e3113b2.png" alt="Logo" width="120" height="120">
   </a>
-![pixel4te](https://user-images.githubusercontent.com/28759552/227783794-164b4ed4-cddd-4171-8fc2-19238e3113b2.png)
 
 <h3 align="center">pixel4te</h3>
 
