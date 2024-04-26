@@ -203,10 +203,6 @@ Distributed under the MIT License. See [LICENSE](https://github.com/en0c-026/pix
 
 
 
-<!-- CONTACT -->
-## Contact
-
-en0c-026 - [Twitter](https://twitter.com/ben_ya_1) - bitup.games@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
